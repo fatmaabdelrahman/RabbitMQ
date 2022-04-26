@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/',[\App\Http\Controllers\TestRabbitController::class,'index']);
+Route::get('/declare-queue',[\App\Http\Controllers\TestRabbitController::class,'queueDeclare']);
