@@ -24,10 +24,13 @@ class TestRabbitController extends Controller
     }
 
     public function queueDeclare(){
-//        $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
         $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
         $channel = $connection->channel();
-        $result = ($channel->basic_get('adam', true, null)->body);
-        return $result;
+        $result = ($channel->basic_get('adam', true, null));
+        if ($result){
+            return  $result->body;
+        }else{
+            return  "Sorry There is No Queues Here";
+        }
     }
 }
